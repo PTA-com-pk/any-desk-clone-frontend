@@ -1,0 +1,55 @@
+{
+  "name": "remote-support-electron",
+  "version": "1.0.0",
+  "description": "Remote Support Electron Desktop App",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "dev:vite": "vite",
+    "build": "npm run build:main && npm run build:preload && vite build",
+    "build:main": "tsc -p tsconfig.main.json",
+    "build:preload": "tsc -p tsconfig.preload.json",
+    "preview": "vite preview",
+    "package": "electron-builder",
+    "package:win": "electron-builder --win",
+    "package:mac": "electron-builder --mac",
+    "package:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.remotesupport.app",
+    "productName": "Remote Support",
+    "directories": {
+      "output": "out"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

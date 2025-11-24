@@ -1,0 +1,13 @@
+appId: com.remotesupport.app
+productName: Remote Support
+directories:
+  output: out
+files:
+  - dist/**/*
+  - package.json
+mac:
+  category: public.app-category.utilities
+win:
+  target: nsis
+linux:
+  target: AppImage
