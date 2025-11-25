@@ -1,8 +1,14 @@
-import { ipcMain, nativeImage } from 'electron';
-import * as robot from 'robotjs';
+import { ipcMain } from 'electron';
 
-// Install robotjs: npm install robotjs
-// Note: robotjs may require native compilation
+// Example implementation for native input injection
+// This file is not currently used - handlers are in main.ts
+// To use this implementation:
+// 1. Install robotjs: npm install robotjs @types/robotjs
+// 2. Import and call setupControlHandlers() in main.ts
+// Note: robotjs requires native compilation
+
+// Uncomment the following import when robotjs is installed:
+// import * as robot from 'robotjs';
 
 export function setupControlHandlers() {
   ipcMain.handle('inject-mouse-event', async (_event, eventData: {
@@ -13,6 +19,9 @@ export function setupControlHandlers() {
     deltaX?: number;
     deltaY?: number;
   }) => {
+    // This is an example implementation using robotjs
+    // Uncomment and install robotjs to use:
+    /*
     try {
       const screenSize = robot.getScreenSize();
       const screenWidth = screenSize.width;
@@ -55,6 +64,8 @@ export function setupControlHandlers() {
     } catch (error) {
       console.error('Failed to inject mouse event:', error);
     }
+    */
+    console.log('Mouse event received (example handler - not implemented):', eventData);
   });
 
   ipcMain.handle('inject-keyboard-event', async (_event, eventData: {
@@ -66,6 +77,9 @@ export function setupControlHandlers() {
     altKey?: boolean;
     metaKey?: boolean;
   }) => {
+    // This is an example implementation using robotjs
+    // Uncomment and install robotjs to use:
+    /*
     try {
       if (eventData.type === 'keydown') {
         // Handle special keys
@@ -109,5 +123,7 @@ export function setupControlHandlers() {
     } catch (error) {
       console.error('Failed to inject keyboard event:', error);
     }
+    */
+    console.log('Keyboard event received (example handler - not implemented):', eventData);
   });
 }
